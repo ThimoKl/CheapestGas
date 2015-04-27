@@ -5,14 +5,16 @@ import android.content.DialogInterface;
 import android.content.DialogInterface.OnCancelListener;
 import android.content.Intent;
 import android.content.IntentSender.SendIntentException;
+import android.graphics.Point;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.app.DialogFragment;
 import android.util.Log;
+import android.view.Display;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.TextView;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -73,7 +75,10 @@ public class MainActivity extends Activity implements
     @InjectView(R.id.txtPrice2) TextView txtPrice2;
     @InjectView(R.id.txtDistance2) TextView txtDistance2;
 
-    @InjectView(R.id.btnChooseFuel) Button btnChooseFuel;
+    @InjectView(R.id.btnChooseFuel) TextView txtChooseFuel;
+
+    @InjectView(R.id.ibBackgroundStation1) ImageButton ibBackgroundStation1;
+    @InjectView(R.id.ibBackgroundStation2) ImageButton ibBackgroundStation2;
 
 
     /**
@@ -105,7 +110,7 @@ public class MainActivity extends Activity implements
             mFuelName = KeyValueStorage.getString("fuelName", "E10");
         }
 
-        btnChooseFuel.setText(mFuelName);
+        txtChooseFuel.setText(mFuelName);
     }
 
     /**
@@ -230,7 +235,7 @@ public class MainActivity extends Activity implements
         mFuelType = fuelType;
         mFuelName = fuelName;
 
-        btnChooseFuel.setText(fuelName);
+        txtChooseFuel.setText(fuelName);
 
         KeyValueStorage.setString("fuelType", fuelType);
         KeyValueStorage.setString("fuelName", fuelName);
@@ -298,7 +303,7 @@ public class MainActivity extends Activity implements
 
         GasStation cheapestStation = stations.get(0);
         txtName1.setText(cheapestStation.brand);
-        txtPrice1.setText(String.format("%.3f€", cheapestStation.price));
+        txtPrice1.setText(String.format("%.3f €", cheapestStation.price));
         txtDistance1.setText(String.format("%.2f km", cheapestStation.dist));
         mDestination1 = cheapestStation.lat + "," + cheapestStation.lng;
 
@@ -313,7 +318,7 @@ public class MainActivity extends Activity implements
 
         GasStation closestStation = stations.get(0);
         txtName2.setText(closestStation.brand);
-        txtPrice2.setText(String.format("%.3f€", closestStation.price));
+        txtPrice2.setText(String.format("%.3f €", closestStation.price));
         txtDistance2.setText(String.format("%.2f km", closestStation.dist));
         mDestination2 = closestStation.lat + "," + closestStation.lng;
     }

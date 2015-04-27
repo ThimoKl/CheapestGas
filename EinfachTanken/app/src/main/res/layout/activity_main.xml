@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#3f8cb7" >
 
     <LinearLayout
         android:id="@+id/errorWrapper"
@@ -10,6 +11,7 @@
         android:orientation="vertical"
         android:visibility="gone"
         android:clickable="true"
+        android:gravity="center"
         android:onClick="onClick_reloadFromErrorState">
 
         <TextView
@@ -17,6 +19,7 @@
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceMedium"
             android:text="Whoops... Da lief was schief."
+            android:textColor="#ffffff"
              />
     </LinearLayout>
 
@@ -25,14 +28,14 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        android:visibility="gone">
+        android:visibility="gone"
+        android:gravity="center" >
 
-        <TextView
+        <ProgressBar
+            android:id="@+id/progressBar1"
+            style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Wird geladen..."
-            />
+            android:layout_height="wrap_content" />
         </LinearLayout>
 
     <LinearLayout
@@ -42,59 +45,164 @@
         android:orientation="vertical"
         android:visibility="visible">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Name 1"
-            android:id="@+id/txtName1"
-            android:clickable="true"
-            android:onClick="onClick_startNavigation1" />
 
-        <TextView
-            android:layout_width="wrap_content"
+        <LinearLayout
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="1,35€"
-            android:id="@+id/txtPrice1" />
+            android:gravity="center"
+            android:orientation="horizontal" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="1km"
-            android:id="@+id/txtDistance1" />
+            <TextView
+                android:id="@+id/btnChooseFuel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-light"
+                android:paddingBottom="10dp"
+                android:paddingTop="10dp"
+                android:shadowColor="#000000"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:text="Diesel"
+                android:textColor="#fff"
+                android:textSize="24sp"
+                android:clickable="true"
+                android:onClick="onClick_btnChooseFuel" />
+        </LinearLayout>
 
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:padding="5dp"
+            android:layout_weight="1"
+            android:gravity="center" >
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Name 1"
-            android:id="@+id/txtName2"
-            android:clickable="true"
-            android:onClick="onClick_startNavigation2" />
+            <ImageButton
+                android:id="@+id/ibBackgroundStation1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:contentDescription="@string/navigate_to_cheapest"
+                android:scaleType="fitCenter"
+                android:src="@drawable/round_bg"
+                android:onClick="onClick_startNavigation1" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="1,35€"
-            android:id="@+id/txtPrice2" />
+            <TextView
+                android:id="@+id/txtName1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="sans-serif-light"
+                android:shadowColor="#00000033"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:text="Aral"
+                android:textSize="26sp"
+                android:maxLength="18"
+                android:singleLine="true"
+                android:ellipsize="marquee" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="1km"
-            android:id="@+id/txtDistance2" />
+            <TextView
+                android:id="@+id/txtPrice1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/txtName1"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-light"
+                android:padding="5dp"
+                android:shadowColor="#00000033"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:text="1,52 €"
+                android:textSize="30sp" />
 
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Diesel"
-            android:id="@+id/btnChooseFuel"
-            android:onClick="onClick_btnChooseFuel"/>
+            <TextView
+                android:id="@+id/txtDistance1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtName1"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-light"
+                android:padding="5dp"
+                android:shadowColor="#00000033"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:text="3 km"
+                android:textSize="24sp" />
+        </RelativeLayout>
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:padding="5dp"
+            android:gravity="center" >
+
+            <ImageButton
+                android:id="@+id/ibBackgroundStation2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:background="@null"
+                android:contentDescription="@string/navigate_to_closest"
+                android:scaleType="fitCenter"
+                android:src="@drawable/round_bg"
+                android:onClick="onClick_startNavigation2" />
+
+            <TextView
+                android:id="@+id/txtName2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_centerVertical="true"
+                android:fontFamily="sans-serif-light"
+                android:shadowColor="#00000033"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:text="Mr. Wash Autoservice GmbH bla bla"
+                android:textSize="26sp"
+                android:maxLength="18"
+                android:singleLine="true"
+                android:ellipsize="marquee" />
+
+            <TextView
+                android:id="@+id/txtPrice2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_above="@id/txtName2"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-light"
+                android:padding="5dp"
+                android:shadowColor="#00000033"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:text="1,52 €"
+                android:textSize="30sp" />
+
+            <TextView
+                android:id="@+id/txtDistance2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtName2"
+                android:layout_centerHorizontal="true"
+                android:fontFamily="sans-serif-light"
+                android:padding="5dp"
+                android:shadowColor="#00000033"
+                android:shadowDx="1"
+                android:shadowDy="1"
+                android:shadowRadius="2"
+                android:text="3 km"
+                android:textSize="24sp" />
+        </RelativeLayout>
 
 
     </LinearLayout>

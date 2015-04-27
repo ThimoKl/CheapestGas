@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">EinfachTanken</string>
+    <string name="navigate_to_cheapest">Zur günstigsten Tankstelle navigieren</string>
+    <string name="navigate_to_closest">Zur nächsten Tankstelle navigieren</string>
 </resources>
