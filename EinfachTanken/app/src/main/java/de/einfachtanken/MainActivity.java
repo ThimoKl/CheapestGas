@@ -17,6 +17,9 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.HitBuilders;
+import com.google.android.gms.analytics.Tracker;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.common.api.GoogleApiClient;
@@ -88,6 +91,11 @@ public class MainActivity extends Activity implements
     private boolean mIsInResolution;
 
     /**
+     * Google Analytics
+     */
+    private Tracker mTracker;
+
+    /**
      * Called when the activity is starting. Restores the activity state.
      */
     @Override
@@ -111,6 +119,11 @@ public class MainActivity extends Activity implements
         }
 
         txtChooseFuel.setText(mFuelName);
+
+        // Google Analytics
+        Tracker t = getTracker();
+        t.setScreenName("MainActivity");
+        t.send(new HitBuilders.ScreenViewBuilder().build());
     }
 
     /**
@@ -192,6 +205,19 @@ public class MainActivity extends Activity implements
 
     public void onClick_startNavigation1(View view) {
         if(mDestination1 == null || mDestination1.length() == 0) return;
+
+        // Google Analytics
+        GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+        Tracker t = analytics.newTracker("UA-27694799-14");
+
+        //Tracker t = getTracker();
+        t.send(new HitBuilders.EventBuilder()
+                .setCategory("Navigation")
+                .setAction("Click")
+                .setLabel("Cheapest")
+                .build());
+
+
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("http://maps.google.com/maps?daddr=" + mDestination1));
         startActivity(intent);
@@ -199,6 +225,24 @@ public class MainActivity extends Activity implements
 
     public void onClick_startNavigation2(View view) {
         if(mDestination2 == null || mDestination2.length() == 0) return;
+
+        // Google Analytics
+        //Tracker t = getTracker();
+        //t.setScreenName("Navigate");
+        //t.send(new HitBuilders.ScreenViewBuilder().build());
+
+        // Google Analytics
+        GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+        Tracker t = analytics.newTracker("UA-27694799-14");
+
+        //Tracker t = getTracker();
+        t.send(new HitBuilders.EventBuilder()
+                .setCategory("Navigation")
+                .setAction("Click")
+                .setLabel("Closest")
+                .build());
+
+
         Intent intent = new Intent(android.content.Intent.ACTION_VIEW,
                 Uri.parse("http://maps.google.com/maps?daddr=" + mDestination2));
         startActivity(intent);
@@ -399,6 +443,20 @@ public class MainActivity extends Activity implements
             Log.e(TAG, "Exception while starting resolution activity", e);
             retryConnecting();
         }
+    }
+
+    private Tracker getTracker() {
+        if(mTracker == null) {
+            GoogleAnalytics analytics = GoogleAnalytics.getInstance(this);
+            mTracker = analytics.newTracker("UA-27694799-14");
+            mTracker.enableAutoActivityTracking(true);
+            mTracker.setSessionTimeout(300);
+
+            // Enable Advertising Features.
+            // mTracker.enableAdvertisingIdCollection(true);
+        }
+
+        return mTracker;
     }
 
 }
