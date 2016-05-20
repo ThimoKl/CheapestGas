@@ -9,7 +9,7 @@ public class GasStationDownloader implements DownloadListener {
 
     private ParserListener mListener = null;
     // The API key has been removed.
-    // Get an API key from tankerkoenig.de
+    // Get an API key from creativecommons.tankerkoenig.de
     private String mUrl = "https://creativecommons.tankerkoenig.de/json/list.php?lat=[LAT]&lng=[LNG]&rad=[RADIUS]&sort=price&type=[TYPE]&apikey=API_KEY";
     private String mLat;
     private String mLng;
