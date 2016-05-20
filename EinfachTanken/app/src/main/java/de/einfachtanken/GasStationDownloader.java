@@ -8,7 +8,9 @@ import com.google.gson.Gson;
 public class GasStationDownloader implements DownloadListener {
 
     private ParserListener mListener = null;
-    private String mUrl = "https://creativecommons.tankerkoenig.de/json/list.php?lat=[LAT]&lng=[LNG]&rad=[RADIUS]&sort=price&type=[TYPE]&apikey=5b38b277-eb17-4c16-b196-0d8751ef1807";
+    // The API key has been removed.
+    // Get an API key from tankerkoenig.de
+    private String mUrl = "https://creativecommons.tankerkoenig.de/json/list.php?lat=[LAT]&lng=[LNG]&rad=[RADIUS]&sort=price&type=[TYPE]&apikey=API_KEY";
     private String mLat;
     private String mLng;
     private String mType;
